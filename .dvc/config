@@ -1,0 +1,6 @@
+[core]
+    no_scm = True
+    analytics = false
+    remote = ts01
+['remote "ts01"']
+    url = ssh://ts01.pik-potsdam.de/data/rd5/ecs/DVC/climate-literature

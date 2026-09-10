@@ -1,0 +1,9 @@
+_commit: 18d22e2
+_src_path: gh:mcc-apsis/ecs-repo-template
+dvc_ts01_remote_path: /data/rd5/ecs/DVC/climate-literature
+dvc_ts01_user: ''
+project_description: Measuring the size and make-up of the climate literature
+projectname: climate-literature
+python_version: '3.14'
+use_dvc: true
+use_vscode: true

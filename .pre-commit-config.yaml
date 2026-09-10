@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 2700fd5671c633760d912769c041bfcde2b9a01b # v0.15.22
+    hooks:
+      - id: ruff
+        args:
+          - --config=pyproject.toml
+      - id: ruff-format
+        args:
+          - --config=pyproject.toml
+
+  - repo: https://github.com/tox-dev/pyproject-fmt
+    rev: "b82a24a520c5d496cb7b23b4e9b63537c280f51b" #v2.27.0
+    hooks:
+      - id: pyproject-fmt
+        files: ^pyproject\.toml$
+
+  - repo: https://github.com/astral-sh/ty-pre-commit
+    # ty version.
+    rev: ac85803d0443afba1e0700690366fd2d39e02580 # v0.0.65
+    hooks:
+      - id: ty

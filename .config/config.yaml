@@ -1,0 +1,6 @@
+models:
+  - evidence-for-climate-solutions/climatebert-policyinstruments-relevant
+  - evidence-for-climate-solutions/climatebert-policyinstruments-instrument-i
+  - evidence-for-climate-solutions/climatebert-policyinstruments-sector
+inclusion_model: evidence-for-climate-solutions/climatebert-policyinstruments-relevant
+inclusion_label: relevant

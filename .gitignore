@@ -8,8 +8,13 @@ dist/
 .venv/
 venv/
 
+data/raw/scopus/
+data/policymap/
+
 # DVC
 .dvc/config.local
 .dvc/tmp/
 .dvc/cache
+
+.snakemake
 

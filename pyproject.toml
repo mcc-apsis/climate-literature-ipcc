@@ -18,6 +18,17 @@ dynamic = [
 ]
 dependencies = [
   "dvc[ssh]>=3.67.1",
+  "pandas>=3.0.5",
+  "pyarrow>=25.0.1",
+  "snakemake>=9.26.1",
+  "typer>=0.27",
+]
+optional-dependencies.ml = [
+  "torch>=2.14",
+  "transformers>=5.17",
+]
+optional-dependencies.nacsos = [
+  "nacsos-data",
 ]
 
 [tool.hatch]
@@ -25,6 +36,9 @@ version.source = "vcs"
 build.targets.wheel.packages = [
   "src/climate_literature",
 ]
+
+[tool.uv]
+sources.nacsos-data = { git = "https://gitlab.pik-potsdam.de/mcc-apsis/nacsos/nacsos-data.git" }
 
 [tool.ruff]
 lint.select = [

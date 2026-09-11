@@ -4,6 +4,7 @@ from typing import cast
 
 import pandas as pd
 import pyarrow as pa
+import pyarrow.dataset as pads
 import pyarrow.parquet as pq
 import typer
 from nacsos_data.util.academic.apis.scopus import ScopusAPI
@@ -59,18 +60,34 @@ def read_scopus_into_df(jsonl_file: Path) -> pd.DataFrame:
         return df
 
 
+def saved_source_files() -> set[str]:
+    """Names of source files already present in the output dataset."""
+    if not out_dir.exists() or not any(out_dir.glob("source_file=*")):
+        return set()
+    dataset = pads.dataset(str(out_dir), format="parquet", partitioning="hive")
+    # Reading only the partition column derives values from directory
+    # names, so this never touches the row data.
+    column = dataset.to_table(columns=["source_file"]).column("source_file")
+    return set(column.to_pylist())
+
+
 def main(
     job_id: int = typer.Option(0, help="Job ID for distributed processing"),
     num_jobs: int = typer.Option(1, help="Total number of jobs"),
 ):
     """Make predictions on the raw data and turn into a parquet dataset."""
 
+    already_saved = saved_source_files()
+
     for i, jsonl_file in enumerate(sorted(RAW_DATA.glob("*.jsonl"))):
         if i % num_jobs != job_id:
             continue
+        if jsonl_file.name in already_saved:
+            print(f"[yellow]Skipping {jsonl_file.name} (already saved)[/yellow]")
+            continue
         batch_df = read_scopus_into_df(jsonl_file).head(10)
 
-        batch_df = batch_df[batch_df["text"].str.contains(r"\w")]
+        batch_df = batch_df[batch_df["text"].str.contains(r"\w", na=False)]
         for model in settings.models:
             batch_df = batch_df.merge(predict(batch_df, model), how="left")
             print(batch_df)

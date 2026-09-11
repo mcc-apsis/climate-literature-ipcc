@@ -494,6 +494,7 @@ name = "climate-literature"
 source = { editable = "." }
 dependencies = [
     { name = "dvc", extra = ["ssh"] },
+    { name = "httpx" },
     { name = "pandas" },
     { name = "pyarrow" },
     { name = "snakemake" },
@@ -512,13 +513,14 @@ nacsos = [
 [package.metadata]
 requires-dist = [
     { name = "dvc", extras = ["ssh"], specifier = ">=3.67.1" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "nacsos-data", marker = "extra == 'nacsos'", git = "https://gitlab.pik-potsdam.de/mcc-apsis/nacsos/nacsos-data.git" },
     { name = "pandas", specifier = ">=3.0.5" },
     { name = "pyarrow", specifier = ">=25.0.1" },
     { name = "snakemake", specifier = ">=9.26.1" },
-    { name = "torch", marker = "extra == 'ml'", specifier = ">=2.14.0" },
-    { name = "transformers", marker = "extra == 'ml'", specifier = ">=5.17.0" },
-    { name = "typer", specifier = ">=0.27.0" },
+    { name = "torch", marker = "extra == 'ml'", specifier = ">=2.14" },
+    { name = "transformers", marker = "extra == 'ml'", specifier = ">=5.17" },
+    { name = "typer", specifier = ">=0.27" },
 ]
 provides-extras = ["ml", "nacsos"]
 

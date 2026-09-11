@@ -10,6 +10,8 @@ venv/
 
 data/raw/scopus/
 data/policymap/
+data/logs/
+data/predictions/
 
 # DVC
 .dvc/config.local

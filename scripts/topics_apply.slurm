@@ -9,6 +9,7 @@
 #SBATCH --time=24:00:00
 #SBATCH --nodes=1
 #SBATCH --partition=standard
+#SBATCH --qos=short
 #SBATCH --mem=64G
 #SBATCH --cpus-per-task=8
 #SBATCH --chdir=/home/maxca/climate-literature-ipcc

@@ -12,6 +12,7 @@ data/raw/scopus/
 data/policymap/
 data/logs/
 data/predictions/
+data/topics/
 
 # DVC
 .dvc/config.local

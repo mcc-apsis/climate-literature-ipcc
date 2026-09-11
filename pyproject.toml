@@ -19,6 +19,7 @@ dynamic = [
 dependencies = [
   "dvc[ssh]>=3.67.1",
   "httpx>=0.28.1",
+  "matplotlib>=3.11.1",
   "pandas>=3.0.5",
   "pyarrow>=25.0.1",
   "snakemake>=9.26.1",
@@ -30,6 +31,11 @@ optional-dependencies.ml = [
 ]
 optional-dependencies.nacsos = [
   "nacsos-data",
+]
+optional-dependencies.topics = [
+  "nltk>=3.9",
+  "scikit-learn>=1.7",
+  "scipy>=1.16",
 ]
 
 [tool.hatch]

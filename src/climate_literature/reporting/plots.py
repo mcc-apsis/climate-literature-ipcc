@@ -2,11 +2,13 @@
 
 Each figure is one typer command, e.g.:
 
-    uv run python -m climate_literature.reporting.plots papers-by-year
+    climate-figures papers-by-year
 
 or build them all in one go:
 
-    uv run python -m climate_literature.reporting.plots build-all
+    climate-figures build-all
+
+(Also reachable as `python -m climate_literature.reporting.plots ...`.)
 """
 
 import re
@@ -80,8 +82,22 @@ def save_fig(fig: plt.Figure, name: str) -> None:
     print(f"wrote {path}")
 
 
-def load_predictions() -> pads.Dataset:  # noqa: ANN401
-    return pads.dataset(str(PREDICTIONS_DATA), format="parquet", partitioning="hive")
+# Corpus figures cover the modern literature only; older records are dropped
+# at load time, so every figure shares the same denominator.
+MIN_PUBLICATION_YEAR = 1985
+
+
+def load_predictions(columns: list[str]) -> DataFrame:
+    """Read columns from the predictions, with the year cutoff pushed to parquet."""
+    return (
+        pads.dataset(str(PREDICTIONS_DATA), format="parquet", partitioning="hive")
+        .scanner(
+            columns=columns,
+            filter=pads.field("publication_year") >= MIN_PUBLICATION_YEAR,
+        )
+        .to_table()
+        .to_pandas()
+    )
 
 
 def load_prediction_columns(wanted: list[str]) -> DataFrame:
@@ -91,12 +107,22 @@ def load_prediction_columns(wanted: list[str]) -> DataFrame:
     pyarrow cannot unify the mixed schemas (it takes the schema from the
     first file). So each file contributes the wanted columns it has and
     concat unions the frames, filling absent columns with NaN.
+
+    The publication year is always read when present, to apply the
+    MIN_PUBLICATION_YEAR cutoff; rows without year info fall out of it.
     """
+    read = [*wanted]
+    if "publication_year" not in read:
+        read.append("publication_year")
     frames = []
     for path in sorted(PREDICTIONS_DATA.rglob("*.parquet")):
-        present = [c for c in wanted if c in pq.read_schema(path).names]
+        present = [c for c in read if c in pq.read_schema(path).names]
         frames.append(pq.read_table(path, columns=present).to_pandas())
-    return concat(frames, ignore_index=True)
+    df = concat(frames, ignore_index=True)
+    df = df[df["publication_year"] >= MIN_PUBLICATION_YEAR]
+    if "publication_year" not in wanted:
+        df = df.drop(columns="publication_year")
+    return df
 
 
 # The sector model's columns look like "8 - 04. Energy" in the predictions.
@@ -125,7 +151,7 @@ def _count_by_year(column: Series) -> Series:
 def papers_by_year() -> None:
     """Total number of papers in the corpus by publication year."""
     configure_style()
-    df = load_predictions().to_table(columns=["publication_year"]).to_pandas()
+    df = load_predictions(["publication_year"])
     counts = _count_by_year(df["publication_year"])
 
     fig, ax = plt.subplots(figsize=(7, 3.5))

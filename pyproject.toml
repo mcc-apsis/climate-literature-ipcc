@@ -25,6 +25,10 @@ dependencies = [
   "snakemake>=9.26.1",
   "typer>=0.27",
 ]
+optional-dependencies.embed = [
+  "sentence-transformers>=6.0.1",
+  "umap-learn>=0.5.12",
+]
 optional-dependencies.ml = [
   "torch>=2.14",
   "transformers>=5.17",
@@ -37,6 +41,7 @@ optional-dependencies.topics = [
   "scikit-learn>=1.7",
   "scipy>=1.16",
 ]
+scripts.figures = "climate_literature.reporting.plots:app"
 
 [tool.hatch]
 version.source = "vcs"

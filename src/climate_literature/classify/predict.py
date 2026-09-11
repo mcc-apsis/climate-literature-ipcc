@@ -85,7 +85,7 @@ def main(
         if jsonl_file.name in already_saved:
             print(f"[yellow]Skipping {jsonl_file.name} (already saved)[/yellow]")
             continue
-        batch_df = read_scopus_into_df(jsonl_file).head(10)
+        batch_df = read_scopus_into_df(jsonl_file)
 
         batch_df = batch_df[batch_df["text"].str.contains(r"\w", na=False)]
         for model in settings.models:

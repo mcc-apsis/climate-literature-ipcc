@@ -16,5 +16,5 @@ data/policymap/
 .dvc/tmp/
 .dvc/cache
 
-.snakemake
+.snakemake/
 

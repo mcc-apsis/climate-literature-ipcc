@@ -20,6 +20,9 @@ random_state=1). init and solver differ from the published run: init='nndsvda'
 tolerates the sample's zero columns, and solver='mu' is far faster than the
 default 'cd' on large sparse matrices at the same objective.
 
+The published alphas (0.01/0.05/0.1, run_models.py in cc-topography) are
+converted to current-sklearn equivalents at fit time — see _nmf_alphas().
+
 Run from the repo root:
 
     uv run python -m climate_literature.topics.train sweep --sample 200000
@@ -59,7 +62,8 @@ DOC_TOPICS_DIR = TOPICS_DATA / "doc_topics"
 MODELS_DIR = TOPICS_DATA / "models"
 
 DEFAULT_KS = [80, 90, 100, 110, 120, 130, 140, 150]
-DEFAULT_ALPHAS = [0.01, 0.05, 0.1]
+# The published K x alpha grid plus an unregularised control at fit scale.
+DEFAULT_ALPHAS = [0.0, 0.01, 0.05, 0.1]
 SEED = 1  # the original random_state; also the sample RNG seed
 
 
@@ -135,6 +139,23 @@ def _lib_versions() -> dict[str, str]:
     }
 
 
+def _nmf_alphas(alpha: float, n_docs: int, n_terms: int) -> tuple[float, float]:
+    """Published do_nmf alpha -> (alpha_W, alpha_H) for current sklearn.
+
+    Current sklearn multiplies the W penalty by n_features and the H penalty
+    by n_samples inside the objective (NMF docstring; the terms are added to
+    the multiplicative-update denominators). The 2019 run predates that
+    scaling: fitting it on its 400k docs survived alpha=0.1, while passing
+    those alphas through modern sklearn crushes every component to zero
+    within a few iterations — all 24 grid points of cluster job 2127328
+    collapsed (the penalty constant becomes alpha*l1_ratio*n_features ~ 20 at
+    n_terms~19k, overwhelming the sub-1 data-term entries of tf-idf). The
+    division below restores the published penalty constants exactly:
+    alpha_used * n_features == alpha.
+    """
+    return alpha / n_terms, alpha / n_docs
+
+
 def _components_long(model: NMF, vocab: np.ndarray) -> pd.DataFrame:
     """Topic-term scores as a long (term, topic, score) frame, zero-dropped."""
     wide = pd.DataFrame(model.components_, columns=vocab).T
@@ -151,7 +172,9 @@ def _components_long(model: NMF, vocab: np.ndarray) -> pd.DataFrame:
 def sweep(
     sample: int = typer.Option(200_000, help="Rows to fit each model on"),
     k: str = typer.Option("", help="Comma-separated K values (default: 80..150)"),
-    alpha: str = typer.Option("", help="Comma-separated alphas (default: .01,.05,.1)"),
+    alpha: str = typer.Option(
+        "", help="Comma-separated published alphas (default: 0,.01,.05,.1)"
+    ),
     min_df: int = typer.Option(
         0, help="Min document frequency (0 = auto by sample size)"
     ),
@@ -196,10 +219,11 @@ def sweep(
             rd.mkdir(parents=True, exist_ok=True)
             typer.echo(f"fitting NMF {tag} ...")
 
+            aw, ah = _nmf_alphas(av, n_fit, tfidf.shape[1])
             model = NMF(
                 n_components=kv,
-                alpha_W=av,
-                alpha_H=av,
+                alpha_W=aw,
+                alpha_H=ah,
                 l1_ratio=0.1,
                 init="nndsvda",
                 solver="mu",
@@ -208,11 +232,9 @@ def sweep(
             )
             model.fit(tfidf)
 
-            # sklearn's W penalty scales with K*n_terms (fixed) while the
-            # data term scales with n_docs — so on a small sample or at high K
-            # the alpha penalty can crush every component to zero (the original
-            # never hit this because it fit on 400k docs). Flag it loudly
-            # instead of silently writing an empty, useless run.
+            # Witness check for the penalty-collapse failure mode (see
+            # _nmf_alphas): flag it loudly instead of silently writing an
+            # empty, useless run.
             if not model.components_.sum() > 0:
                 typer.secho(
                     f"  {tag}: all components zero (over-regularised at this "
@@ -232,7 +254,12 @@ def sweep(
                     {
                         "tag": tag,
                         "K": kv,
-                        "alpha": av,
+                        "alpha": av,  # published (2019) alpha, as in the run tag
+                        "alpha_W_fit": aw,
+                        "alpha_H_fit": ah,
+                        "alpha_note": "published alpha; sklearn fitted with "
+                        "alpha_W/alpha_H to undo modern sklearn's penalty "
+                        "rescaling (see train._nmf_alphas)",
                         "min_df": effective_min_df,
                         "max_df": 0.9,
                         "l1_ratio": 0.1,

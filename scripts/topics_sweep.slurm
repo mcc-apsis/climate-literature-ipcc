@@ -10,7 +10,9 @@
 #   uv run --no-project --with nltk scripts/seed_nltk_data.py
 
 #SBATCH --job-name=topics-sweep
-#SBATCH --time=12:00:00
+# 32 grid points now (K x {0,0.01,0.05,0.1}); non-degenerate fits run to tol,
+# budget ~20 min each + ~20 min vectorising. short QoS caps at 24h.
+#SBATCH --time=20:00:00
 #SBATCH --nodes=1
 #SBATCH --partition=standard
 #SBATCH --qos=short

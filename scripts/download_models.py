@@ -11,3 +11,12 @@ for model in settings.models:
         print(f"✓ {model}")
     except Exception as e:
         print(f"✗ {model}: {e}")
+
+print(f"Downloading embedding model {settings.embedding_model}...")
+try:
+    from sentence_transformers import SentenceTransformer
+
+    SentenceTransformer(settings.embedding_model)
+    print(f"✓ {settings.embedding_model}")
+except Exception as e:
+    print(f"✗ {settings.embedding_model}: {e}")

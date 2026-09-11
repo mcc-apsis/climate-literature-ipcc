@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     models: list[str]
     inclusion_model: str
     inclusion_label: str
+    embedding_model: str = "allenai/sclite-scite"
 
     @classmethod
     def settings_customise_sources(

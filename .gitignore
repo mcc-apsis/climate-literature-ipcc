@@ -13,6 +13,8 @@ data/policymap/
 data/logs/
 data/predictions/
 data/topics/
+data/embeddings/
+data/coords/
 
 # DVC
 .dvc/config.local

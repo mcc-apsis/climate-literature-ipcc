@@ -4,3 +4,4 @@ models:
   - evidence-for-climate-solutions/climatebert-policyinstruments-sector
 inclusion_model: evidence-for-climate-solutions/climatebert-policyinstruments-relevant
 inclusion_label: relevant
+embedding_model: allenai/specter2_base

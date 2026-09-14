@@ -1,0 +1,6 @@
+outs:
+- md5: f6e6041974e915826942f76d4a919148.dir
+  size: 1633680775
+  nfiles: 128
+  hash: md5
+  path: topics

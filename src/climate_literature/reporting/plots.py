@@ -15,12 +15,16 @@ import re
 from collections.abc import Callable
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pyarrow.dataset as pads
 import pyarrow.parquet as pq
 import typer
+from matplotlib.colors import LinearSegmentedColormap
+from matplotlib.ticker import FuncFormatter
 from pandas import DataFrame, Series, concat
 
-from climate_literature.constants import FIGURES_DIR, PREDICTIONS_DATA
+from climate_literature.constants import COORDS_DATA, FIGURES_DIR, PREDICTIONS_DATA
+from climate_literature.settings import settings
 
 app = typer.Typer(help="Build the reporting figures.")
 
@@ -284,6 +288,144 @@ def policy_share_by_sector() -> None:
     fig.tight_layout()
     fig.subplots_adjust(wspace=0.4)
     save_fig(fig, "policy_share_by_sector")
+    plt.close(fig)
+
+
+# Sequential ramp for the embedding panels: one hue, light→dark (magnitude).
+# Endpoints are #e8f1fb / SERIES_1 / #14417a — OKLab lightness is strictly
+# monotonic across the ramp (0.954 -> 0.378), the checked requirement for a
+# sequential map; the categorical adjacency validator would fail by design.
+UMAP_RAMP = LinearSegmentedColormap.from_list(
+    "umap_blue", ["#e8f1fb", SERIES_1, "#14417a"]
+)
+
+
+def _load_coords() -> DataFrame:
+    """UMAP-2D coordinates with item_id normalised to raw 16-byte UUID bytes.
+
+    Both sides of the join arrive as bytes: the arrow uuid extension comes
+    back as bytes from to_pandas(), and reduce.py stores the same 16-byte
+    binary — so they hash-join directly, no str(UUID) conversion needed.
+    """
+    path = COORDS_DATA / "coords.parquet"
+    if not path.exists():
+        raise FileNotFoundError(
+            f"{path} not found — run the reduce step "
+            "(python -m climate_literature.embed.reduce) or fetch coords.parquet "
+            "from the cluster clone's data/coords/."
+        )
+    return pq.read_table(path, columns=["item_id", "x", "y"]).to_pandas()
+
+
+@figure
+def umap_embedding() -> None:
+    """Where the corpus sits in the UMAP-2D embedding: density, time, policy."""
+    configure_style()
+    coords = _load_coords()
+    df = coords.merge(
+        load_prediction_columns(["item_id", "relevant", "publication_year"]),
+        on="item_id",
+        how="inner",
+        validate="one_to_one",
+    )
+    x, y = df["x"].to_numpy(), df["y"].to_numpy()
+    n = len(df)
+
+    # Shared frame across panels (UMAP axes carry no units, so no ticks).
+    padx, pady = (np.ptp(x) * 0.03, np.ptp(y) * 0.03)
+    xlim, ylim = (x.min() - padx, x.max() + padx), (y.min() - pady, y.max() + pady)
+
+    fig, (ax_dens, ax_year, ax_pol) = plt.subplots(1, 3, figsize=(11, 3.6))
+    for ax in (ax_dens, ax_year, ax_pol):
+        ax.set_xlim(*xlim)
+        ax.set_ylim(*ylim)
+        ax.set_aspect("equal")
+
+    # Panel 1: raw density, with the hero count.
+    ax_dens.hexbin(x, y, gridsize=50, cmap=UMAP_RAMP, mincnt=1, linewidths=0)
+    ax_dens.text(
+        0.02,
+        0.98,
+        f"{n:,}",
+        transform=ax_dens.transAxes,
+        fontsize=24,
+        color=INK_PRIMARY,
+        va="top",
+    )
+    ax_dens.text(
+        0.02,
+        0.865,
+        "papers embedded",
+        transform=ax_dens.transAxes,
+        fontsize=9,
+        color=INK_SECONDARY,
+        va="top",
+    )
+    ax_dens.set_title("Density", loc="left", fontsize=11, color=INK_SECONDARY)
+
+    # Panels 2-3: per-hex summaries. Bins under mincnt stay unpainted so
+    # a stray pair of points cannot mint a whole hex of median/shares.
+    hb_year = ax_year.hexbin(
+        x,
+        y,
+        C=df["publication_year"].to_numpy(dtype=float),
+        reduce_C_function=np.median,
+        gridsize=50,
+        mincnt=3,
+        cmap=UMAP_RAMP,
+        vmin=df["publication_year"].min(),
+        vmax=df["publication_year"].max(),
+        linewidths=0,
+    )
+    ax_year.set_title(
+        "Median publication year", loc="left", fontsize=11, color=INK_SECONDARY
+    )
+    cbar_year = fig.colorbar(hb_year, ax=ax_year, fraction=0.046, pad=0.03)
+    cbar_year.outline.set_visible(False)
+    cbar_year.set_label("year", fontsize=8, color=INK_SECONDARY, labelpad=4)
+
+    # The cascade (classify/predict.py) only scores policy relevance over the
+    # corpus, so every joined row carries a score; threshold as elsewhere.
+    hb_pol = ax_pol.hexbin(
+        x,
+        y,
+        C=(df["relevant"].to_numpy() > RELEVANCE_THRESHOLD).astype(float),
+        reduce_C_function=np.mean,
+        gridsize=50,
+        mincnt=5,
+        cmap=UMAP_RAMP,
+        vmin=0.0,
+        vmax=1.0,
+        linewidths=0,
+    )
+    ax_pol.set_title(
+        "Share on climate policy", loc="left", fontsize=11, color=INK_SECONDARY
+    )
+    cbar = fig.colorbar(hb_pol, ax=ax_pol, fraction=0.046, pad=0.03)
+    cbar.outline.set_visible(False)
+    cbar.set_label("share", fontsize=8, color=INK_SECONDARY, labelpad=4)
+    cbar.ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:.0%}"))
+
+    # Strip the frame after drawing (hexbin re-activates axes). Empty tick
+    # locators, not axis("off"): the latter hides the parent Axis, leaving
+    # the tick-label Text objects themselves visible (and colliding) to any
+    # renderer that walks artists by their own visibility flag.
+    for ax in (ax_dens, ax_year, ax_pol):
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.set_frame_on(False)
+
+    fig.tight_layout()
+    fig.text(
+        0.01,
+        -0.03,
+        f"{settings.embedding_model} embeddings (768-d, L2-normalised) · UMAP 2-D: "
+        "n_neighbors=30, min_dist=0, spectral init, fit on a 500k subsample · "
+        f"years ≥ {MIN_PUBLICATION_YEAR}",
+        fontsize=8,
+        color=INK_SECONDARY,
+    )
+    save_fig(fig, "umap_embedding")
     plt.close(fig)
 
 

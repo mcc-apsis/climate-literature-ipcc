@@ -1,0 +1,6 @@
+outs:
+- md5: 3c0f94a837ff93ca0484342a36d8f0f1.dir
+  size: 5612885900
+  nfiles: 2
+  hash: md5
+  path: coords

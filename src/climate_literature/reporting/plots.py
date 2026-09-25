@@ -160,9 +160,9 @@ def papers_by_year() -> None:
 
     fig, ax = plt.subplots(figsize=(7, 3.5))
     ax.bar(counts.index, counts.to_numpy(), width=0.8, color=SERIES_1, linewidth=0)
-    ax.set_title("Papers in the corpus by publication year")
+    ax.set_title("Climate change publication growth")
     ax.set_xlabel("Publication year")
-    ax.set_ylabel("Papers")
+    ax.set_ylabel("Number of publications")
     ax.grid(axis="y", color=GRID)
     ax.set_axisbelow(True)
     for spine in ("top", "right"):

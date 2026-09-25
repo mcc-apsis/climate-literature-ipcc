@@ -495,6 +495,7 @@ source = { editable = "." }
 dependencies = [
     { name = "dvc", extra = ["ssh"] },
     { name = "httpx" },
+    { name = "jinja2" },
     { name = "matplotlib" },
     { name = "pandas" },
     { name = "pyarrow" },
@@ -524,6 +525,7 @@ topics = [
 requires-dist = [
     { name = "dvc", extras = ["ssh"], specifier = ">=3.67.1" },
     { name = "httpx", specifier = ">=0.28.1" },
+    { name = "jinja2", specifier = ">=3.1" },
     { name = "matplotlib", specifier = ">=3.11.1" },
     { name = "nacsos-data", marker = "extra == 'nacsos'", git = "https://gitlab.pik-potsdam.de/mcc-apsis/nacsos/nacsos-data.git" },
     { name = "nltk", marker = "extra == 'topics'", specifier = ">=3.9" },

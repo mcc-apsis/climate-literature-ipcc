@@ -1,0 +1,55 @@
+# WGIII Section 1 — literature growth
+
+The literature on climate change has continued to grow since AR6. 
+The bibliometric methods of Callaghan et al. (2020) were re-applied to an updated corpus of {{ n_corpus | approx(3) }} climate-relevant Scopus records ({{ min_year }}–{{ last_year }}).
+Annual publications rose from {{ papers_2019 | approx }} in {{ baseline_year }} to {{ papers_2024 | approx }} in {{ last_year }}, (at an annual growth rate of {{ cagr_recent | pct }}).
+{{ papers_post_ar6 | comma }} papers ({{ share_post_ar6 | pct }} of the corpus) appeared in {{ ar6_first }}–{{ last_year }}, after the AR6 literature cut-off (Figure X).
+Within this corpus, a subset of ({{ n_relevant | comma }} papers ({{ share_relevant | pct }} of the corpus) were classified as climate policy relevant according to the classifier in Callaghan et al. 2024. 
+Climate policy relevant papers grew from {{ relevant_2019 | approx }} in {{ baseline_year }} to {{ relevant_2024 | approx }} ({{ last_year }}) (growing at ≈{{ cagr_relevant | pct }} per year). 
+The climate policy relevant papers published between {{ ar6_first }} and {{ last_year }} (n = {{ n_sector | comma }}) were split across sectors as follows {{ sector_str }}.
+These figures reflect publications indexed in Scopus, which over-represents English-language journals and high-income-country institutions; they illustrate relative growth in publications rather than total global scientific knowledge.
+
+## Not fillable from this project (left flagged)
+
+- Non-English share of the literature: Scopus abstract records carry no
+  language field, so no number can be produced; keep the qualitative
+  coverage caveat above.
+- Regional-evidence progress (paragraph 3): no assessment-process data here.
+  The predictions do contain author-affiliation countries, so an
+  affiliation-country mix over time is the natural proxy if wanted later.
+- `Ford et al. 2025`, the `[link]` to contribution databases, and the
+  Chapter-3 database calls: outside this repo.
+
+## Caveats for the text
+
+- Numbers quote through {{ last_year }} only: the corpus includes in-press
+  records with future cover dates ({{ last_year + 1 }}–2027 exist), so raw {{ last_year + 1 }}–{{ last_year + 2 }} counts
+  are both incomplete and inflated; the papers-by-year figure showing them
+  needs a footnote or the same cutoff.
+- Sector detail comes from the policy-relevant cascade only (argmax over
+  seven WGIII sector scores), not from the topic model — topic-level numbers
+  per K are not comparable across runs and are not quotable yet.
+- Paragraphs 2–3 of the skeleton (meta-analyses, database calls, AI use,
+  non-English/regional progress) are untouched by this script.
+
+## Values and provenance
+
+| Value | Computed |
+| --- | --- |
+| corpus size (unique records, {{ min_year }}–{{ last_year }}) | {{ n_corpus | comma }} |
+| papers {{ baseline_year }} | {{ papers_2019 | comma }} |
+| papers {{ last_year }} | {{ papers_2024 | comma }} |
+| growth factor {{ baseline_year }}→{{ last_year }} | {{ ratio_recent | times }} |
+| compound growth | {{ cagr_recent | pct }}/yr |
+| papers {{ ar6_first }}–{{ last_year }} | {{ papers_post_ar6 | comma }} |
+| share of corpus {{ ar6_first }}–{{ last_year }} | {{ share_post_ar6 | pct }} |
+| policy-relevant papers (total) | {{ n_relevant | comma }} |
+| policy-relevant share | {{ share_relevant | pct }} |
+| relevant CAGR {{ baseline_year }} → {{ last_year }} | {{ relevant_2019 | approx }} → {{ relevant_2024 | approx }} (≈{{ cagr_relevant | pct }}/yr) |
+| sector split n ({{ ar6_first }}–{{ last_year }}) | {{ n_sector | comma }} |
+| sector split shares | {{ sector_str }} |
+
+Filters: unique `item_id`; publication year {{ min_year }}–{{ last_year }}
+(cover year, from `data/predictions`); policy-relevant = `relevant` >
+{{ threshold }}; sector = argmax over the `"{{ sector_prefix }}…"` sector
+score columns.

@@ -1,21 +1,29 @@
 """Topic-comparison sheets for choosing K — the subjective step of 2020.
 
-Two jobs, both driven by the recovered structure of do_nmf's comparison tool:
+Two jobs, both driven by the recovered structure of do_nmf's comparison tool
+(run_compare_1794_1866.xlsx in the 2019 project):
 
-  adjacent-K sheet — for each neighbouring pair in a K sweep, align topics by
-  top-word overlap (the original's top_word_overlap method) and lay them out
-  side by side, so a human can see how the topic set fragments as K grows and
-  pick a granularity. This replaces topic_comparison.xlsx.
+  ladder sheet — ONE wide sheet per alpha spanning the whole K-series, not a
+  sheet per model pair. Columns repeat per run (words | size | similarity to
+  next run); rows carry topic identity along the chain. Each topic of a larger
+  model is attached to the smaller-model topic it matches most: 1:1 matches
+  share the parent's row, splits stack as continuation rows underneath it
+  (the parent row holds the best fragment, the rest follow in overlap order).
+  So a split reads as a family tree column-wise, and each similarity cell is
+  one topic's top-10 word overlap with the parent it hangs from. This replaces
+  topic_comparison.xlsx.
 
   baseline sheet — align a new run's topics against the 2019 published topics
   (recovered topics.csv) by top-word Jaccard, the seed of a later "how has the
   literature changed" comparison.
 
-Outputs are CSV (Excel-openable); no xlsx dependency needed.
+Sizes are topic term-weight sums from components.parquet — an interim proxy
+for the 2019 sheet's aggregate doc-loadings, which only exist per run once it
+has gone through `train apply`. Outputs are CSV; no xlsx dependency needed.
 
 Run from the repo root:
 
-    uv run python -m climate_literature.topics.compare adjacent --alpha 0.1
+    uv run python -m climate_literature.topics.compare ladder --alpha 0.0
     uv run python -m climate_literature.topics.compare baseline --tag K140_a0.1
 """
 
@@ -36,7 +44,8 @@ SHEETS_DIR = TOPICS_DATA / "comparison"
 
 DEFAULT_KS = [80, 90, 100, 110, 120, 130, 140, 150]
 DEFAULT_ALPHA = 0.1
-TOP_N = 10
+TOP_N = 10  # words per topic for the similarity metric
+DISPLAY_WORDS = 3  # words shown per cell, as in the 2019 sheet
 
 RECOVERED_2019 = Path(
     "~/Documents/papers/published/cc-topography-recovered/tables/topics.csv"
@@ -138,35 +147,136 @@ def _flatten_words(df: pd.DataFrame) -> pd.DataFrame:
 # --- commands --------------------------------------------------------------
 
 
+def _load_run(run_dir: Path, top_n: int = TOP_N) -> pd.DataFrame:
+    """Per-topic top words and term-weight size for one run."""
+    comp = pd.read_parquet(run_dir / "components.parquet")
+    # cumcount filter: pandas 3.0.5 segfaults on groupby().head()
+    ranked = comp.sort_values(["topic", "score"], ascending=[True, False])
+    top = ranked[ranked.groupby("topic").cumcount() < top_n]
+    words = top.groupby("topic")["term"].apply(list)  # score order, best first
+    sizes = comp.groupby("topic")["score"].sum()
+    return pd.DataFrame({"words": words, "size": sizes}).reset_index()
+
+
+def _ladder_rows(
+    loaded: dict[int, pd.DataFrame], ks: list[int]
+) -> tuple[list[dict], dict[tuple[int, int], dict]]:
+    """Genealogy rows: one row per topic-family, splits stack under parents.
+
+    Base run gets one row per topic (sorted by first top word, as in the 2019
+    sheet). Each larger run attaches every topic to the smaller-run topic with
+    maximal top-word overlap: the best fragment claims the parent's row, the
+    rest insert as continuation rows right below it, in overlap order. A parent
+    with no children means that topic dissolved (renamed or merged upstream) —
+    its later cells read blank.
+    """
+    rows: list[dict] = []  # each row: {K: topic id} + {f"sim_{ka}-{kb}": int}
+
+    def row_of(kv: int, topic: int) -> dict | None:
+        for r in rows:
+            if r.get(kv) == topic:
+                return r
+        return None
+
+    base = loaded[ks[0]].copy()
+    base["_first"] = base["words"].str[0]
+    for _, t in base.sort_values("_first").iterrows():  # alphabetical, as in 2019
+        rows.append({ks[0]: int(t["topic"])})
+
+    stats: dict[tuple[int, int], dict] = {}
+    for ka, kb in zip(ks, ks[1:], strict=False):
+        words_a = {int(r["topic"]): r["words"] for _, r in loaded[ka].iterrows()}
+        # every larger-model topic attaches to its most similar parent topic
+        attach: dict[int, list[tuple[int, int]]] = {}  # parent -> [(child, ov)]
+        for _, t in loaded[kb].iterrows():
+            tb, words_b = int(t["topic"]), t["words"]
+            ta, ov = max(
+                ((ta, _overlap(words_b, words_a[ta])) for ta in words_a),
+                key=lambda x: x[1],
+            )
+            attach.setdefault(ta, []).append((tb, ov))
+
+        all_sims = []
+        for ta, children in attach.items():
+            prow = row_of(ka, ta)
+            children.sort(key=lambda c: (-c[1], c[0]))
+            all_sims.extend(ov for _, ov in children)
+            for n, (tb, ov) in enumerate(children):
+                entry = {kb: tb, f"sim_K{ka}-K{kb}": ov}
+                if n == 0 and prow is not None and kb not in prow:
+                    prow.update(entry)
+                elif prow is not None:
+                    rows.insert(rows.index(prow) + 1 + n, entry)
+                else:  # parent had no row of its own: stack after its block
+                    rows.append(entry)
+        stats[(ka, kb)] = {
+            "sims": all_sims,
+            # parents with >=2 children; and parents no child attached to
+            "splits": sum(len(c) >= 2 for c in attach.values()),
+            "dissolved": sum(
+                1 for _, r in loaded[ka].iterrows() if int(r["topic"]) not in attach
+            ),
+        }
+    return rows, stats
+
+
 @app.command()
-def adjacent(
-    k: str = typer.Option("", help="K values compared in order (default: 80..150)"),
+def ladder(
+    k: str = typer.Option("", help="K values in increasing order (default: 80..150)"),
     alpha: float = typer.Option(DEFAULT_ALPHA, help="alpha of the runs to compare"),
-    top_n: int = typer.Option(TOP_N, help="Top words per topic"),
 ) -> None:
-    """Write side-by-side topic sheets for each neighbouring pair in a K sweep."""
+    """Write one wide genealogy sheet for a whole K-series at a given alpha."""
     ks = [int(x) for x in k.split(",")] if k else DEFAULT_KS
-    SHEETS_DIR.mkdir(parents=True, exist_ok=True)
-    loaded: dict[int, dict] = {}
+    loaded: dict[int, pd.DataFrame] = {}
     for kv in ks:
         rd = RUNS_DIR / f"K{kv}_a{alpha}"
         if not (rd / "components.parquet").exists():
             typer.echo(f"skip K={kv}: no run at {rd}")
             continue
-        loaded[kv] = _top_words_by_topic(rd, top_n)
-
+        loaded[kv] = _load_run(rd)
     ks_present = [kv for kv in ks if kv in loaded]
     if len(ks_present) < 2:
         raise typer.BadParameter(
             "need at least two comparable runs; run `train sweep` first"
         )
 
-    for ka, kb in zip(ks_present, ks_present[1:], strict=False):
-        aligned = _align(loaded[ka], loaded[kb], _overlap)
-        out = SHEETS_DIR / f"compare_K{ka}_vs_K{kb}_a{alpha}.csv"
-        _flatten_words(aligned).to_csv(out, index=False)
-        mean_ov = aligned["overlap"].mean()
-        typer.echo(f"K{ka}->K{kb}: mean overlap {mean_ov:.1f}/{top_n}, wrote {out}")
+    rows, stats = _ladder_rows(loaded, ks_present)
+
+    def cell(r: dict, col: str):
+        if col.startswith("words_"):
+            kv = int(col.split("K")[1])
+            if kv not in r:
+                return ""
+            ws = loaded[kv].set_index("topic").loc[r[kv], "words"]
+            return "{" + ", ".join(ws[:DISPLAY_WORDS]) + "}"
+        if col.startswith("size_"):
+            kv = int(col.split("K")[1])
+            if kv not in r:
+                return ""
+            return round(loaded[kv].set_index("topic").loc[r[kv], "size"], 1)
+        if col.startswith("sim_"):
+            return r.get(col, "")
+        return ""
+
+    cols = [
+        c
+        for i, kv in enumerate(ks_present)
+        for c in (
+            [f"words_K{kv}", f"size_K{kv}"]
+            + ([f"sim_K{kv}-K{ks_present[i + 1]}"] if i + 1 < len(ks_present) else [])
+        )
+    ]
+    out = SHEETS_DIR / f"ladder_a{alpha}.csv"
+    SHEETS_DIR.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame([{c: cell(r, c) for c in cols} for r in rows]).to_csv(out, index=False)
+
+    for (ka, kb), st in stats.items():
+        typer.echo(
+            f"K{ka}->K{kb}: mean sim {np.mean(st['sims']):.1f}/{TOP_N}, "
+            f"{len(st['sims'])} attached, {st['splits']} splits, "
+            f"{st['dissolved']} dissolved"
+        )
+    typer.echo(f"wrote {out} ({len(rows)} rows)")
 
 
 @app.command()

@@ -35,14 +35,16 @@ import pandas as pd
 import typer
 from scipy.optimize import linear_sum_assignment
 
-from climate_literature.constants import TOPICS_DATA
+from climate_literature.constants import TABLES_DIR, TOPICS_DATA
 
 app = typer.Typer(help="Compare topic-model runs for K selection.")
 
 RUNS_DIR = TOPICS_DATA / "runs"
-SHEETS_DIR = TOPICS_DATA / "comparison"
+# report/tables is git-tracked: sheets are small, analysis-derived, and must
+# survive `dvc checkout` (data/topics is DVC-owned and gets wiped by it).
+SHEETS_DIR = TABLES_DIR
 
-DEFAULT_KS = [80, 90, 100, 110, 120, 130, 140, 150]
+DEFAULT_KS = [80, 90, 100, 110, 120, 130, 140, 150, 160, 180, 200, 220]
 DEFAULT_ALPHA = 0.1
 TOP_N = 10  # words per topic for the similarity metric
 DISPLAY_WORDS = 3  # words shown per cell, as in the 2019 sheet

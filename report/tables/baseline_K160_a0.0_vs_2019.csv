@@ -1,0 +1,161 @@
+topic_b,words_b,topic_a,words_a,overlap,similarity
+0,inf concentration atmospheric elevate pco increase ppm ratio high oxide,170534.0,concentration doc high atmospheric ppm mol low dissolve atmospheric-co2 sample,4,0.25
+1,research review paper development new article issue present problem discuss,170507.0,research science issue social article knowledge challenge review scientific paper,5,0.333
+2,flux measurement site net eddy estimate sink respiration exchange covariance,170425.0,flux measurement net estimate eddy chamber exchange measure covariance annual,7,0.538
+3,sup isotope value rate respectively average >−</ high isotopic year,170441.0,delta isotope value isotopic thousand composition ratio stable oxygen variation,3,0.176
+4,soil moisture respiration microbial erosion content property root depth tillage,170410.0,soil moisture content microbial organic depth som property tillage organic-matter,7,0.538
+5,climate action global justice science future climate-change international political article,170547.0,global earth world atmospheric estimate terrestrial mean regional climate-change century,2,0.111
+6,water scarcity quality demand availability supply drinking desalination use nexus,170413.0,water irrigation resource supply demand availability quality scarcity use vapor,7,0.538
+7,plant stress abiotic seed tolerance interaction salinity response protein biotic,170436.0,stress response gene tolerance thermal expression protein physiological condition mechanism,4,0.25
+8,emission reduction reduce greenhouse-gas inventory estimate factor total carbon-dioxide per,170414.0,emission greenhouse-gas inventory nox reduce estimate total factor carbon-dioxide pollutant,8,0.667
+9,forest stand tropical stock deforestation disturbance forestry wood redd timber,170415.0,forest stand tropical deforestation stock disturbance redd timber wood canopy,9,0.818
+10,design performance approach tool architecture engineering structure structural methodology base,170538.0,method use approach analysis estimate technique apply base sample different,2,0.111
+11,ice sea sheet antarctic greenland polar arctic antarctica melt shelf,170424.0,ice sheet sea antarctic greenland core melt shelf antarctica polar,9,0.818
+12,building build residential retrofit performance indoor comfort envelope zero office,170460.0,building construction design build residential performance thermal material comfort green,5,0.333
+13,carbon low sink neutrality stock carbon-emissions reduction trading achieve accounting,170433.0,carbon low sink stock net carbon-emissions economy terrestrial tax store,5,0.333
+14,urban planning area urbanization island space uhi rural infrastructure environment,170434.0,urban city urbanization planning green rural infrastructure island uhi development,7,0.538
+15,specie distribution range niche richness invasive native shift habitat diversity,170412.0,specie native invasive range niche abundance extinction bird trait invasion,5,0.333
+16,crop yield wheat maize stress grain soybean tillage productivity rotation,170520.0,yield wheat grain maize cultivar seed high soybean variety corn,5,0.333
+17,hydrogen electrolysis cell steam reforming clean carrier ammonia produce gasification,170533.0,hydrogen cell steam produce electrolysis reforming gasification catalyst fuel methanol,7,0.538
+18,power generation electric operation voltage unit paper fired output propose,170453.0,power generation nuclear electric efficiency grid turbine load thermal fired,4,0.25
+19,risk assessment hazard perception exposure financial insurance high asset safety,170463.0,risk disaster hazard vulnerability assessment perception insurance exposure damage decision,6,0.429
+20,drought stress spei severity severe spi tolerance condition response meteorological,170444.0,drought severe severity dry spi moisture condition spei mortality frequency,6,0.429
+21,lake level diatom phytoplankton aquatic nutrient area shallow basin plateau,170421.0,lake level diatom phytoplankton aquatic shallow catchment basin nutrient evaporation,8,0.667
+22,vehicle electric charge ev car hybrid station fleet charging motor,170473.0,vehicle electric battery car hybrid charge transportation road traffic fleet,6,0.429
+23,concrete strength aggregate geopolymer compressive mix ash durability fiber fly,170411.0,co2 mol carbon-dioxide ambient ppm atmosphere atmospheric-co2 uptake efflux elevate,0,0.0
+24,land use cover area lulc lst cropland deforestation expansion degradation,170495.0,land cover agricultural use land-use deforestation degradation cropland agriculture conversion,6,0.429
+25,model simulation simulate use modeling dynamic parameter climate predict modelling,170418.0,model simulation simulate use prediction predict parameter dynamic couple result,7,0.538
+26,energy transition source demand renewable-energy clean saving fossil energy-efficiency renewable,170409.0,energy demand source saving energy-consumption renewable-energy use fossil energy-efficiency save,7,0.538
+27,environmental impact economic environment pollution degradation study issue performance concern,170481.0,climate future warm projection regional feedback impact warming sensitivity response,1,0.053
+28,system hybrid integrate operation photovoltaic control heating propose pump conventional,170451.0,system performance hybrid conventional operation control integrate component earth efficiency,6,0.429
+29,health public mental care healthcare child impact mortality outcome exposure,170526.0,health public mortality impact exposure care human benefit related death,6,0.429
+30,cycle life assessment lca impact category product gwp stage analysis,170446.0,environmental impact life cycle assessment lca category product study indicator,7,0.538
+31,fuel fossil cell alternative biofuels renewable ethanol use aviation source,170427.0,ch4 oxidation peat uptake atmospheric source respectively measurement paddy peatlands,1,0.053
+32,fire burn regime severity burning area landscape occurrence charcoal savanna,170430.0,fire burn wildfire regime severity charcoal burning frequency disturbance post,6,0.429
+33,food security diet insecurity nutrition nutritional agriculture protein dietary global,170504.0,food web supply diet chain agriculture consumer resource agricultural consumption,3,0.176
+34,wildfire state united burn california impact smoke area increase severity,170428.0,increase decrease due result increased lead cause significantly decline may,1,0.053
+35,temperature warm increase high mean maximum rate low average warming,170484.0,temperature warm mean thermal maximum minimum high cold daily variation,5,0.333
+36,sea coastal level rise coast storm slr tide surge salinity,170438.0,sea level rise coastal coast tide baltic salinity storm tidal,8,0.667
+37,heat stress pump heating exchanger transfer district cooling geothermal cool,170454.0,heat heating pump thermal mortality exchanger transfer hot cool latent,6,0.429
+38,flood flooding damage hazard area flash inundation event storm frequency,170447.0,flood flooding damage frequency hazard disaster floodplain peak inundation flash,7,0.538
+39,organic matter acid microbial content dom doc compound fraction som,170527.0,litter decomposition microbial loss som quality mass lignin peat pool,2,0.111
+40,waste solid landfill plastic municipal recycle msw disposal biogas incineration,170475.0,waste landfill solid municipal msw biogas treatment incineration compost recovery,7,0.538
+41,methane landfill oxidation rumen concentration anaerobic diet source feed ruminant,170472.0,methane oxidation source hydrate landfill methane-emissions atmosphere atmospheric release anaerobic,5,0.333
+42,cost economic benefit low abatement reduce price investment reduction analysis,170478.0,cost benefit abatement option investment low capital effective mitigation reduce,6,0.429
+43,storage cc capacity geological store site aquifer saline capture ccus,170496.0,site elevation across high sample gradient two difference three stand,1,0.053
+44,growth economic rate development relationship economy gdp causality radial run,170461.0,economic development economy social socio environmental resource gdp causality relationship,6,0.429
+45,biomass gasification bioenergy aboveground feedstock biofuels microalgae root pyrolysis agb,170457.0,biomass aboveground bioenergy estimate total ground stock wood stand gasification,4,0.25
+46,policy government public national mitigation target instrument support implementation political,170518.0,policy government maker national instrument mitigation public support decision target,8,0.667
+47,adaptation strategy mitigation local impact measure adapt planning adaptive plan,170476.0,adaptation vulnerability strategy local adaptive mitigation impact capacity farmer adapt,7,0.538
+48,river basin discharge yellow yangtze hydrological delta streamflow dam upper,170417.0,river discharge basin channel dam floodplain fluvial estuary yellow tributary,5,0.333
+49,biochar pyrolysis application amendment biochars property straw feedstock carbon-sequestration produce,170509.0,biochar amendment application pyrolysis biochars compost amend straw property addition,7,0.538
+50,wind turbine speed offshore farm hybrid renewable-energy blade source renewable,170479.0,wind speed turbine offshore farm upwelling direction westerly storm meteorological,5,0.333
+51,ecosystem service biodiversity terrestrial function provide marine provision trade value,170501.0,growth radial grow relationship productivity seedling increment causality response shoot,0,0.0
+52,technology innovation digital technological development smart adoption challenge application intelligence,170528.0,technology cc development new innovation technological deployment capture carbon-capture develop,4,0.25
+53,extreme event frequency day climate intensity storm impact cold duration,170489.0,extreme event weather frequency storm day intensity daily occurrence cold,7,0.538
+54,solar radiation photovoltaic collector panel irradiance cell hybrid sun renewable-energy,170477.0,solar radiation irradiance cycle collector thermal photovoltaic sun earth variation,6,0.429
+55,aerosol atmospheric particle dust radiative forcing optical concentration aod anthropogenic,170511.0,aerosol forcing radiative dust particle anthropogenic optical atmospheric sulfate aod,9,0.818
+56,tree ring stand site mortality pine width wood chronology height,170440.0,tree ring stand pine chronology width mortality wood density spruce,8,0.667
+57,gas natural flue turbine shale lng mixture exhaust flare greenhouse,170445.0,gas natural hydrate flue turbine mixture pressure sf6 shale separation,6,0.429
+58,glacier mass retreat mountain glacial balance area melt elevation debris,170442.0,glacier mass balance retreat mountain debris melt elevation moraine advance,8,0.667
+59,record holocene late pollen glacial cal period climatic last early,170432.0,record late early age holocene climatic proxy similar basin reconstruction,5,0.333
+60,country international develop trade global income economic economy nation world,170530.0,country develop international developed trade kyoto national world protocol income,6,0.429
+61,green finance innovation roof economy financial bond investment enterprise space,170535.0,season day grow dry phenology seasonal wet phenological spring date,0,0.0
+62,data use monitoring satellite sensor information measurement method estimate time,170487.0,data use satellite set information estimate observation measurement resolution base,6,0.429
+63,population size migration demographic density decline individual survival genetic range,170435.0,population size survival density demographic decline dynamic individual migration breeding,8,0.667
+64,vegetation ndvi cover area dynamic type normalized difference pollen phenology,170471.0,vegetation ndvi cover type grassland dynamic shrub steppe normalized alpine,6,0.429
+65,coral reef bleaching stress island bleach marine colony acropora acidification,170437.0,coral reef bleaching bleach symbiodinium colony calcification island cover acropora,7,0.538
+66,soc stock organic sequestration tillage content fraction depth aggregate pool,170456.0,soc stock soil organic-carbon sequestration tillage depth pool grassland content,7,0.538
+67,rainfall monsoon rain landslide intensity india pattern annual heavy dry,170449.0,rainfall monsoon rain daily intensity annual australia africa wet india,6,0.429
+68,air pollution quality pollutant indoor ventilation concentration control conditioning particulate,170420.0,air pollution quality pollutant indoor ventilation control pm2 humidity combustion,7,0.538
+69,metal heavy mofs mining mine copper element oxide contamination trace,170546.0,glacial last interglacial lgm maximum cycle dust kyr glaciation mi,0,0.0
+70,community microbial bacterial diversity local composition abundance structure indigenous fungal,170497.0,community microbial composition abundance bacterial diversity fungal functional local bacteria,8,0.667
+71,groundwater recharge aquifer level zone hydrogeological discharge quality table arid,170485.0,groundwater recharge aquifer resource level discharge irrigation table zone shallow,7,0.538
+72,change climatic response climate global shift future pattern may driver,170486.0,change climatic shift response cause pattern affect abrupt regime driver,6,0.429
+73,oil palm recovery biodiesel crude eor bio petroleum pyrolysis price,170524.0,oil palm biodiesel diesel recovery eor crude bio plantation price,8,0.667
+74,rice paddy yield straw grain field husk cultivation fertilizer season,170483.0,rice paddy field straw fertilizer cultivation grain cultivar stage application,7,0.538
+75,process chemical methanol gasification steam produce product distillation reactor scale,170515.0,process chemical base design dynamic step integration capture produce industrial,3,0.176
+76,coal mine fired mining gasification seam ash firing permeability coalbed,170499.0,coal combustion mine gasification seam fired mining ash oxy igcc,7,0.538
+77,weather condition forecast weathering meteorological forecasting climatic atmospheric station humidity,170539.0,cal pollen holocene peat dry condition charcoal core taxon bog,1,0.053
+78,supply chain demand product logistics manufacturer supplier retailer profit consumer,,,0,0.0
+79,ocean marine circulation acidification deep global atlantic atmosphere phytoplankton southern,170419.0,ocean circulation deep atmosphere southern indian oceanic atlantic marine sea,7,0.538
+80,material composite property fiber raw polymer application plastic mechanical base,170416.0,n2o denitrification nitrous-oxide nitrification fertilizer no3 application urea nitrate nh4,1,0.053
+81,adsorption adsorbent capacity pore porous sorbent zeolite isotherm mmol desorption,170480.0,adsorption capacity adsorbent material pore sorbent porous high desorption selectivity,7,0.538
+82,precipitation annual moisture increase wet decrease dry downscaling mean monsoon,170448.0,precipitation annual moisture wet mean daily downscaling station monthly amount,6,0.429
+83,catalyst reaction catalytic conversion reduction selectivity chemical electrochemical methanol synthesis,,,0,0.0
+84,season winter summer spring seasonal day phenology period year autumn,170531.0,winter summer spring monsoon seasonal autumn cold northern asian warm,5,0.333
+85,prediction accuracy error learning forecast forecasting deep neural predict lstm,170443.0,distribution range niche climatic shift spatial variable predict current potential,1,0.053
+86,tourism tourist destination development travel island sustainable impact economy activity,,,0,0.0
+87,road traffic pavement asphalt congestion time infrastructure speed travel maintenance,170459.0,year period annual average last time past mean variation old,1,0.053
+88,engine diesel biodiesel blend exhaust load cylinder injection ignition performance,170469.0,fuel fossil engine combustion diesel biodiesel ethanol cell consumption blend,4,0.25
+89,wetland marsh restoration coastal landscape tidal peat wetlands freshwater hydrological,170506.0,wetland coastal marsh mangrove restoration salinity peat tidal freshwater salt,7,0.538
+90,flow rate stream regime fluid low debris catchment transfer mass,170514.0,flow stream low regime streamflow catchment watershed debris hydrological fluid,7,0.538
+91,city smart plan local low development pilot level action industrial,170492.0,rate high accumulation low erosion respiration time constant estimate measure,1,0.053
+92,industry sector industrial manufacturing company product economy decarbonization business government,170462.0,sector industry industrial tourism intensity transportation output economy manufacturing paper,5,0.333
+93,china province development chinese intensity peak factor northeast structure east,170502.0,china province chinese east intensity factor urbanization monsoon northeast north,7,0.538
+94,trend station year annual series increase analysis period significant mann,170508.0,trend station significant annual decade period show kendall mann test,6,0.429
+95,thermal comfort insulation performance cooling cool tolerance indoor conductivity wall,170491.0,degree day latitude similar warm thermal high respectively range low,1,0.053
+96,resilience infrastructure resilient enhance framework strategy adaptive challenge stress approach,,,0,0.0
+97,vulnerability social adaptive capacity exposure assessment hazard coastal vulnerable livelihood,170536.0,area study high map coastal protect zone protected total locate,1,0.053
+98,production produce biogas product biofuel ethanol biofuels fermentation livestock feed,170517.0,production primary produce ethanol biofuel biofuels product agricultural feedstock net,6,0.429
+99,disease vector pathogen virus borne infection infectious dengue transmission mosquito,170494.0,disease vector host pathogen infection malaria transmission virus mosquito parasite,7,0.538
+100,construction timber dam embodied demolition material structural site structure wood,,,0,0.0
+101,fish fishery marine fishing aquaculture catch stock freshwater trophic abundance,170523.0,fish fishery marine abundance fishing stock catch prey predator freshwater,8,0.667
+102,membrane separation selectivity polymer performance cell permeability fiber composite permeance,170521.0,membrane separation selectivity performance polymer permeability permeation fiber permeance hollow,8,0.667
+103,network neural distribution sensor node communication ann wireless social station,,,0,0.0
+104,surface earth layer radiation lst albedo atmosphere sst moisture near,170439.0,surface layer albedo near atmosphere radiation atmospheric observation moisture earth,8,0.667
+105,spatial scale temporal distribution pattern factor variation regional resolution variability,170540.0,scale spatial large variability temporal regional pattern local variation time,7,0.538
+106,capture solvent absorption amine co2 liquid cc mea regeneration sorbent,170468.0,absorption solvent amine liquid mea solution aqueous ionic regeneration absorbent,6,0.429
+107,mangrove coastal blue stock ecosystem restoration seagrass marsh avicennia rhizophora,,,0,0.0
+108,uncertainty projection estimate ensemble method sensitivity robust parameter stochastic variability,170510.0,uncertainty estimate parameter projection decision ensemble source sensitivity assessment future,6,0.429
+109,snow cover depth snowmelt mountain snowpack elevation winter snowfall albedo,170482.0,snow cover depth snowmelt snowpack melt elevation albedo swe snowfall,8,0.667
+110,electricity generation demand renewable sector price mix hydropower generate renewable-energy,170505.0,electricity generation demand renewable grid consumption supply renewable-energy source mix,6,0.429
+111,effect increase impact negative study positive greenhouse result interaction affect,170431.0,effect affect interaction study negative factor positive indirect direct result,7,0.538
+112,treatment wastewater sludge removal anaerobic microalgae sewage biogas recovery effluent,,,0,0.0
+113,carbonation carbonate mineral reaction calcium rock dissolution formation calcite slag,170455.0,carbonate mineral rock dissolution formation calcite weathering reaction carbonation calcium,9,0.818
+114,scenario future projection rcp pathway impact current increase rcp8 baseline,170488.0,scenario future impact projection century use different baseline ipcc climate-change,5,0.333
+115,consumption reduce per meat consumer run causality footprint caput total,170532.0,per thousand part caput unit value estimate cent gdp average,2,0.111
+116,transport sector mobility freight public mode rail passenger car travel,170470.0,transport road transportation mode travel freight car traffic infrastructure passenger,6,0.429
+117,human activity environment natural earth anthropogenic world people nature animal,170464.0,human activity natural anthropogenic environment impact cause enzyme influence resource,5,0.333
+118,reservoir injection co2 pressure permeability rock fluid fracture well geological,170452.0,storage reservoir injection pressure aquifer geological cc permeability formation brine,5,0.333
+119,agricultural agriculture productivity sector practice smart farming rural sustainable fertilizer,170422.0,crop agricultural irrigation residue tillage agriculture rotation maize farmer practice,3,0.176
+120,ghg mitigation greenhouse-gas ghgs sector farm greenhouse-gases livestock manure target,170522.0,ghg greenhouse-gas mitigation emission life ghgs ethanol cycle lca net,4,0.25
+121,management practice strategy sustainable manage approach conservation fishery effective adaptive,170429.0,management resource practice strategy decision conservation sustainable planning manage manager,6,0.429
+122,farmer farm smallholder farming livestock adoption dairy practice perception milk,170467.0,farm animal milk dairy manure feed farmer livestock cow diet,5,0.333
+123,market price trading financial firm ets mechanism investment scheme allowance,170529.0,price market tax trading trade scheme ets allowance firm cap,7,0.538
+124,sediment erosion load rate core deposition sedimentation sedimentary deposit catchment,170498.0,sediment erosion core sedimentation load deposit sedimentary deposition shelf diatom,8,0.667
+125,project cdm projection future century cc development phase program benefit,170544.0,project cdm projection future development century cmip5 ensemble construction intercomparison,6,0.429
+126,cloud feedback radiative computing compute radiation center satellite convective earth,170458.0,cloud feedback radiative radiation satellite albedo cirrus low convective shortwave,6,0.429
+127,optimization algorithm multi objective propose problem optimal solution method solve,170537.0,network design problem propose optimization algorithm solution optimal objective supply,7,0.538
+128,cement strength ash compressive mortar portland fly slag binder mechanical,170450.0,cement material concrete strength ash construction steel industry property portland,4,0.25
+129,steel iron slag furnace reduction corrosion blast steelmaking ore reduce,170543.0,reduction reduce target achieve potential strategy would saving could iron,3,0.176
+130,sustainability sustainable social practice business goal economic challenge sustainable-development company,,,0,0.0
+131,arctic permafrost thaw warming tundra warm ground polar northern layer,170503.0,arctic permafrost warm thaw tundra warming ground layer alaska northern,9,0.818
+132,resource natural utilization renewable development geothermal allocation depletion extraction challenge,170516.0,root fine shoot respiration seedling allocation belowground mycorrhizal uptake length,1,0.053
+133,leaf trait root stomatal photosynthesis photosynthetic concentration response content canopy,170474.0,leaf photosynthesis photosynthetic canopy light mol stomatal ambient trait content,7,0.538
+134,wave height storm beach coast coastal mortality frequency period shoreline,170545.0,wave coastal storm height coast surge beach erosion rossby shoreline,7,0.538
+135,irrigation drip irrigated requirement deficit use irrigate moisture sensor evapotranspiration,,,0,0.0
+136,region regional south arid africa asia central north east western,170490.0,region regional south southern africa central northern eastern asia western,7,0.538
+137,pacific enso variability oscillation tropical sst niño atlantic north anomaly,170465.0,pacific sst enso tropical anomaly variability oscillation mode decadal atlantic,8,0.667
+138,battery lithium ion hybrid cell charge electric cathode libs anode,,,0,0.0
+139,nitrogen fertilizer nutrient ammonia oxide nitrate phosphorus deposition denitrification nitrous,170512.0,nitrogen nutrient treatment fertilizer deposition nitrate phosphorus fertilization wastewater control,6,0.429
+140,habitat conservation area biodiversity suitable loss protect suitability maxent protected,170541.0,habitat conservation biodiversity loss suitable bird suitability protect threat fragmentation,7,0.538
+141,education student science knowledge school university teacher learning curriculum awareness,,,0,0.0
+142,disaster natural hazard landslide damage reduction loss emergency people preparedness,,,0,0.0
+143,term long short run time dynamic series lstm ardl memory,170525.0,term long short time run dynamic may variability medium causality,6,0.429
+144,combustion ammonia oxygen oxy flame ignition clc bed reactor carrier,170542.0,oxygen reaction reactor sorbent catalyst combustion carrier bed conversion cao,5,0.333
+145,grid smart load charge microgrid demand voltage control connect integration,,,0,0.0
+146,efficiency performance exergy improve high improvement turbine analysis eco output,170426.0,plant seed grow herbivore flower vascular grass interaction efficiency insect,1,0.053
+147,decision making criterion support tool framework information planning make maker,,,0,0.0
+148,grassland npp productivity alpine graze grazing plateau net grass primary,170519.0,ecosystem net productivity grassland npp respiration ecological gpp nee primary,5,0.333
+149,runoff hydrological catchment watershed streamflow annual swat basin hydrologic evapotranspiration,170513.0,runoff catchment basin hydrological streamflow watershed annual hydrologic evapotranspiration snowmelt,9,0.818
+150,nuclear reactor public safety security uranium new world accident japan,,,0,0.0
+151,tax price subsidy revenue taxation trade government equilibrium product welfare,,,0,0.0
+152,governance global international institutional political framework local law actor transition,,,0,0.0
+153,index value indicator analysis correlation use study ndvi method base,170408.0,index vulnerability correlation indicator value nao ndvi variable relationship analysis,6,0.429
+154,ozone stratospheric concentration atmospheric depletion tropospheric stratosphere refrigerant chemistry layer,170500.0,ozone stratospheric tropospheric stratosphere depletion chemistry troposphere atmospheric hemisphere radiative,7,0.538
+155,hydrate formation phase dissociation pressure stability pore clathrate form sequestration,,,0,0.0
+156,genetic gene diversity trait genome breeding marker genomic functional molecular,170466.0,genetic diversity gene trait variation structure evolutionary differentiation lineage pattern,4,0.25
+157,household income rural livelihood woman social gender survey poverty group,170493.0,household income consumption farmer rural livelihood survey vulnerability group perception,6,0.429
+158,transportation sector infrastructure public mode travel logistics freight route pipeline,,,0,0.0
+159,ecological restoration footprint landscape social niche ecology zone socio eco,170423.0,landscape erosion disturbance ecological connectivity patch dispersal restoration catchment valley,3,0.176

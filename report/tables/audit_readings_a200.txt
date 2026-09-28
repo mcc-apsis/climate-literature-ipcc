@@ -1,0 +1,146 @@
+
+########## predicted splits
+
+T149  size    8596  share<=2010 0.0055 -> >=2016 0.0061
+  words: ['habitat', 'distribution', 'suitable', 'suitability', 'maxent', 'future', 'range', 'niche', 'current', 'variable']
+  2020 0.78 | Prediction of potential geographical distribution patterns of Pyrus xerophila under different climate scenario
+  2026 0.74 | 气候变化背景下栓皮栎在中国的适生区格局
+  2026 0.72 | Prediction of potential suitable habitats for Limosa limosa in China based on MaxEnt model
+
+T196  size    3838  share<=2010 0.0056 -> >=2016 0.0020
+  words: ['ozone', 'stratospheric', 'depletion', 'tropospheric', 'stratosphere', 'refrigerant', 'layer', 'chemistry', 'troposphere', 'atmospheric']
+  2010 0.80 | The ozone layer discovery: A Marseilles story
+  2018 0.76 | Stratospheric Ozone Depletion and Recovery
+  2010 0.75 | Impact of stratospheric ozone recovery on tropospheric ozone and its budget
+
+T34  size    4092  share<=2010 0.0026 -> >=2016 0.0029
+  words: ['wildfire', 'state', 'burn', 'impact', 'united', 'smoke', 'california', 'severity', 'disturbance', 'canada']
+  2021 0.76 | Wildfire burn patients: A unique population
+  2014 0.69 | Wildfire risk adaptation: Propensity of forestland owners to purchase wildfire insurance in the southern unite
+  2017 0.69 | Monster wildfires and metaphor in risk communication
+
+T129  size    5528  share<=2010 0.0020 -> >=2016 0.0043
+  words: ['cement', 'strength', 'ash', 'mortar', 'compressive', 'portland', 'fly', 'slag', 'binder', 'clinker']
+  2019 0.75 | Application of zeolite/kaolin combination for replacement of partial cement clinker to manufacture environment
+  2019 0.75 | Application of zeolite/kaolin combination for replacement of partial cement clinker to manufacture environment
+  2019 0.75 | Application of zeolite/kaolin combination for replacement of partial cement clinker to manufacture environment
+
+T134  size    4474  share<=2010 0.0020 -> >=2016 0.0034
+  words: ['grid', 'charge', 'microgrid', 'voltage', 'connect', 'photovoltaic', 'source', 'integration', 'battery', 'renewable-energy']
+  2024 0.65 | Grid-Connected Current-Delayed Cascade Feedback Control Strategy for LCL Inverters
+  2018 0.57 | Grid code status for wind farms interconnection in Northern Africa and Spain: Descriptions and recommendations
+  2017 0.57 | Erratum to: Spatial spin-up of fine scales in a regional climate model simulation driven by low-resolution bou
+
+########## weakest coherence
+
+T53  size   13997  share<=2010 0.0103 -> >=2016 0.0093
+  words: ['climate', 'action', 'future', 'projection', 'impact', 'regional', 'feedback', 'justice', 'condition', 'related']
+  2025 0.57 | Looming climate doomsday demands creativity, ambition, and societal transformation
+  2022 0.51 | The Climate Crisis: What’s Aging Got to Do With It?
+  2026 0.47 | Reasonable doubt? How The Free Press covers climate change
+
+T160  size    7026  share<=2010 0.0068 -> >=2016 0.0044
+  words: ['site', 'heritage', 'location', 'specific', 'sample', 'two', 'across', 'archaeological', 'stand', 'condition']
+  2020 0.63 | Corrigendum: ILTER – The International Long-Term Ecological Research Network as a Platform for Global Coastal 
+  2021 0.53 | Getica CCS demo project-CO2 storage capacity calculation using static modelling
+  2021 0.53 | Getica CCS demo project-CO2 storage capacity calculation using static modelling
+
+T119  size   13497  share<=2010 0.0099 -> >=2016 0.0093
+  words: ['data', 'use', 'information', 'center', 'analysis', 'set', 'collect', 'weather', 'available', 'prediction']
+  2020 0.69 | Correction to: Soil microbes that may accompany climate warming increase alpine plant production (Oecologia, (
+  2023 0.62 | Correction to: Tourism adaptability amid the climate change and air pollution in BRICS: a method of moments qu
+  2026 0.59 | Correction: Snow, ponds, trees, and frogs: how environmental processes mediate climate change impacts on four 
+
+T180  size    7570  share<=2010 0.0059 -> >=2016 0.0051
+  words: ['control', 'greenhouse', 'strategy', 'controller', 'voltage', 'dynamic', 'pest', 'predictive', 'regulation', 'converter']
+  2022 0.49 | Agency Through the We: Group-Based Control Theory
+  2010 0.47 | A nonlinear model based control strategy for the aluminium electrolysis process
+  2005 0.46 | Constrained predictive control of a greenhouse
+
+T162  size    7993  share<=2010 0.0071 -> >=2016 0.0052
+  words: ['rate', 'mortality', 'time', 'respiration', 'mass', 'accumulation', 'per', 'constant', 'estimate', 'survival']
+  2010 0.44 | Study on the denudation rate, incision rate, uplifting rate of the three gorges of the Yangtze River in short-
+  2014 0.41 | Discounting the Distant Future: An Experimental Investigation
+  2013 0.40 | Can Hydrographic Data Provide Evidence That the Rate of Oceanic Uptake of Anthropogenic CO2 Is Increasing?
+
+T135  size   13878  share<=2010 0.0090 -> >=2016 0.0097
+  words: ['high', 'low', 'value', 'density', 'show', 'compare', 'latitude', 'altitude', 'pressure', 'content']
+  2019 0.40 | Changes of the tropical glaciers throughout Peru between 2000 and 2016 - Mass balance and area fluctuations
+  2019 0.40 | Nitrous oxide (n2o) and methane (ch4) in rivers and estuaries of northwestern borneo
+  2019 0.37 | The ratio of methanogens to methanotrophs and water-level dynamics drive methane transfer velocity in a temper
+
+T116  size    9933  share<=2010 0.0068 -> >=2016 0.0071
+  words: ['area', 'study', 'protect', 'suitable', 'zone', 'protected', 'potential', 'rural', 'map', 'total']
+  2025 0.35 | Antarctic specially protected areas
+  2022 0.33 | Differentiation of static and dynamic interfacial area in the structured packed column
+  2018 0.32 | Environmental representativeness and the role of emitter and recipient areas in the future trajectory of a pro
+
+T198  size    3762  share<=2010 0.0031 -> >=2016 0.0026
+  words: ['island', 'uhi', 'small', 'pacific', 'state', 'antarctic', 'canary', 'archipelago', 'sids', 'atoll']
+  2022 0.72 | Playing with the Anthropocene: Board game imaginaries of islands, nature, and empire
+  2025 0.71 | From insularity, archipelago to aquapelago：Research progress on island studies under the relational turn
+  2018 0.66 | Survival histories of marsupial carnivores on Australian continental shelf islands highlight climate change an
+
+########## 5 largest
+
+T0  size   29158  share<=2010 0.0248 -> >=2016 0.0189
+  words: ['inf', 'pco', 'elevate', 'oxide', 'ratio', 'respectively', 'carbon-dioxide', 'uptake', 'ambient', 'sio']
+  2024 0.83 | Synthesis, crystal structure and magnetic properties of octanuclear Ni4Ln4 complexes constructed using a Schif
+  2011 0.75 | Study on the failure mechanism of potassium-based sorbent for CO2 capture and the improving measure
+  2023 0.74 | Effects of N-substitution on CO2 trapping by cyclic vinylidenes at DFT levels
+
+T5  size   20251  share<=2010 0.0142 -> >=2016 0.0141
+  words: ['social', 'global', 'political', 'issue', 'governance', 'chapter', 'world', 'article', 'problem', 'book']
+  2015 0.80 | The circumstances of intergenerational justice
+  2019 0.79 | For still possible cities: a politics of failure for the politically depressed
+  2021 0.74 | Right-wing populism, the reasonable, and the limits of ideal theory: A reply to Gila Stopler
+
+T3  size   19694  share<=2010 0.0197 -> >=2016 0.0124
+  words: ['sup', 'isotope', 'value', 'respectively', '>−</', 'isotopic', 'average', 'range', 'total', 'μmol']
+  2023 0.82 | Corrigendum to ‘Combined application of basic slag and methanotroph-formulation have good potential to mitigat
+  2020 0.81 | Corrigendum to “Holocene stable isotope record of insolation and rapid climate change in a stalagmite from the
+  2020 0.81 | Corrigendum to “Holocene stable isotope record of insolation and rapid climate change in a stalagmite from the
+
+T2  size   16383  share<=2010 0.0185 -> >=2016 0.0101
+  words: ['year', 'season', 'period', 'winter', 'summer', 'annual', 'seasonal', 'day', 'spring', 'average']
+  2024 0.72 | Reconstruction and analysis of the variation of astronomical seasonal length since 12000 years BP
+  2025 0.62 | Correction: Recycling and reusing a robust solution, or a utopia for lowering the greenhouse gas emissions of 
+  2019 0.60 | Erratum to: Bitcoin emissions alone could push global warming above 2°C (Nature Climate Change, (2018), 8, 11,
+
+T52  size   14993  share<=2010 0.0043 -> >=2016 0.0109
+  words: ['challenge', 'strategy', 'framework', 'sustainable', 'address', 'approach', 'term', 'transition', 'highlight', 'offer']
+  2008 0.35 | Nano solutions for the 21st century
+  2012 0.32 | Climate change: Challenging business, transforming politics
+  2025 0.32 | Leveraging sustainable finance: Strategies and opportunities
+
+########## 5 smallest
+
+T107  size    2252  share<=2010 0.0007 -> >=2016 0.0018
+  words: ['mangrove', 'blue', 'stock', 'restoration', 'ecosystem', 'avicennia', 'rhizophora', 'seagrass', 'tidal', 'sundarbans']
+  1995 0.70 | Asia-Pacific symposium on mangrove ecosystems. Proceedings of an international conference, Hong Kong, Septembe
+  1995 0.70 | Asia-Pacific symposium on mangrove ecosystems. Proceedings of an international conference, Hong Kong, Septembe
+  1995 0.70 | Asia-Pacific symposium on mangrove ecosystems. Proceedings of an international conference, Hong Kong, Septembe
+
+T86  size    2701  share<=2010 0.0012 -> >=2016 0.0020
+  words: ['tourism', 'tourist', 'destination', 'travel', 'sustainable', 'impact', 'activity', 'ski', 'visitor', 'heritage']
+  2025 0.78 | Travelling close to home to fight fossil capitalism? An exploratory and critical reflection on local tourism a
+  2019 0.76 | Infusing tourism geographies
+  2025 0.75 | Tourism and Hospitality for Humanity: Moving Beyond Consumerism
+
+T188  size    2756  share<=2010 0.0014 -> >=2016 0.0020
+  words: ['biogas', 'anaerobic', 'digestion', 'biomethane', 'manure', 'sludge', 'digester', 'digestate', 'bioenergy', 'upgrading']
+  2022 0.61 | Biogas role in achievement of the sustainable development goals: Evaluation, Challenges, and Guidelines
+  2023 0.55 | Are Citizens Ready to Make an Environmental Effort? A Study of the Social Acceptability of Biogas in France
+  2016 0.55 | A review of chemical absorption of carbon dioxide for biogas upgrading
+
+T89  size    2854  share<=2010 0.0020 -> >=2016 0.0020
+  words: ['wetland', 'marsh', 'restoration', 'landscape', 'tidal', 'wetlands', 'peat', 'hydrological', 'ramsar', 'floodplain']
+  2014 0.66 | Formation and main types of isolated wetlands in Sanjiang Plain
+  2012 0.60 | Mapping wetland changes in China between 1978 and 2008
+  2020 0.59 | Hydrological simple water balance modeling for increasing geographically isolated doline wetland functions and
+
+T168  size    2960  share<=2010 0.0039 -> >=2016 0.0017
+  words: ['nuclear', 'reactor', 'safety', 'security', 'uranium', 'accident', 'japan', 'new', 'fukushima', 'weapon']
+  2025 0.78 | Current Security Aspects of Nuclear Weapons
+  2012 0.76 | Nuclear energy-Any solution for sustainability and climate protection?
+  2021 0.75 | Nuclear security: The nexus among science, technology and policy
